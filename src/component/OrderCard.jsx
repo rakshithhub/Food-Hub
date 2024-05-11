@@ -38,7 +38,9 @@ const OrderCard = () => {
         </div>
         <div className="fixed bottom-10 right-10 border border-gray-400 p-4 rounded-full shadow-xl cursor-pointer bg-yellow-500" onClick={() => setToggle(!toggle)}>
           <button className=""><FaCartPlus className=" text-xl font-bold md:text-3xl"/></button>
+          <p className="absolute top-[-11px] right-1 font-bold text-lg bg-black text-white px-2 rounded-full">{totalItem}</p>
         </div>
+
     </>
   )
 }
