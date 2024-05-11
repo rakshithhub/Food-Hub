@@ -18,7 +18,7 @@ const Categories = () => {
   return (
     <>
         <div className="w-full mb-7">
-            <div className="max-w-[1240px] mx-auto p-3 flex gap-8">
+            <div className="max-w-[1240px] mx-auto p-3 flex flex-wrap gap-8">
                 {
                     categories && categories.map((item, i) => (
                         <div key={i}>
