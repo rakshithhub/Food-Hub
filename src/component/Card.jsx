@@ -2,7 +2,7 @@ import { IoStar } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/features/cartItemSlice";
 
-const Card = ({food}) => {
+const Card = ({food, handleToast}) => {
 
     const dispatch = useDispatch();    
     const {id, img, name, price, desc, category, rating} = food;
@@ -20,7 +20,10 @@ const Card = ({food}) => {
             </div>
             <div className="flex justify-between items-center">
                 <p className="flex items-center"><IoStar className="text-yellow-500 text-2xl mr-2 font-bold"/> <span className="text-lg font-semibold">{rating}</span></p>
-                <button className="border border-none outline-none px-3 text-gray-700 py-2 bg-yellow-500  font-bold rounded-lg hover: hover:bg-green-400 transition-all duration-500" onClick={() => dispatch(addItem({...food, qty: 1}))}>Add to card</button>
+                <button className="border border-none outline-none px-3 text-gray-700 py-2 bg-yellow-500  font-bold rounded-lg hover: hover:bg-green-400 transition-all duration-500" onClick={() => {
+                    dispatch(addItem({...food, qty: 1}));
+                    handleToast(name)
+                }}>Add to card</button>
             </div>
         </div>
     </>

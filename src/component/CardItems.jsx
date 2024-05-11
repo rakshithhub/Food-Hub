@@ -1,14 +1,21 @@
 import Card from "./Card";
 import FoodData from "../FoodData";
 import { useSelector } from "react-redux";
+import toast, { Toaster } from 'react-hot-toast';
 
 const CardItems = () => {
 
   const catFilter = useSelector(state => state.categoryfilter.catFilter);
   const searchData = useSelector(state => state.searchFilter.searchData);
+  
+  const handleToast = (name) => toast.success(`Add Item ${name} Successfully...`)
 
   return (
     <>
+      <Toaster
+      position="top-center"
+      reverseOrder={false}
+    />
         <div className="w-full mb-7">
             <div className="max-w-[1240px] mx-auto p-3 flex flex-wrap gap-14">
                 
@@ -28,7 +35,7 @@ const CardItems = () => {
                     }
                   })
                   .map((food) => (
-                    <Card key={food.id} food={food}/>
+                    <Card key={food.id} food={food} handleToast={handleToast}/>
                   ))
                 }
 

@@ -3,9 +3,12 @@ import { FaCartPlus } from "react-icons/fa";
 import OrderItem from "./OrderItem";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const OrderCard = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const cartItems = useSelector(state => state.cart.cartItems);
 
@@ -33,7 +36,7 @@ const OrderCard = () => {
                 <hr className="mb-2"/>
                 <h1 className="text-xl font-bold uppercase mb-2">items : {totalItem}</h1>
                 <h1 className="text-xl font-bold uppercase mb-2">amount : ₹ {totalAmount}</h1>
-                <button className="mx-auto w-[95%] border border-none outline-none px-3 text-gray-700 py-3 bg-yellow-500 text-xl font-bold rounded-lg hover: hover:bg-green-400 transition-all duration-500 capitalize">order now</button>
+                <button className="mx-auto w-[95%] border border-none outline-none px-3 text-gray-700 py-3 bg-yellow-500 text-xl font-bold rounded-lg hover: hover:bg-green-400 transition-all duration-500 capitalize" onClick={() => totalItem > 0 ? navigate("/success") : navigate("/") }>order now</button>
             </div>
         </div>
         <div className="fixed bottom-10 right-10 border border-gray-400 p-4 rounded-full shadow-xl cursor-pointer bg-yellow-500" onClick={() => setToggle(!toggle)}>

@@ -1,6 +1,7 @@
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { decrementQty, deleteItem, incrementQty } from "../redux/features/cartItemSlice";
+import toast from "react-hot-toast";
 
 const OrderItem = ({cart}) => {
     const {id, img, name, price, qty} = cart;
@@ -14,7 +15,12 @@ const OrderItem = ({cart}) => {
             <div className="w-full">
                 <div className="flex justify-between items-center">
                     <h1 className="text-xl font-bold text-yellow-700">{name}</h1>
-                    <MdDeleteForever className="text-xl cursor-pointer" onClick={() => dispatch(deleteItem(cart))}/>
+                    <MdDeleteForever className="text-xl cursor-pointer" onClick={() => {
+                        dispatch(deleteItem(cart));
+                        toast(`Removed ${name}`, {
+                            icon: '❌',
+                        });
+                        }}/>
                 </div>
                 <div className="flex justify-between">
                     <h1 className="text-xl font-bold">₹ {price}</h1>
